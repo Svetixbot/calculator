@@ -32,6 +32,8 @@ Open project in your IDE
 
 		$ sbt eclipse
 
+	After its done go to Eclipse and do File/Import -> Existing Projects into workspace
+
 ## Develop
 
 Compile
