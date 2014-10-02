@@ -22,11 +22,11 @@ Run single test
 
 	> test-only com.meow.meow.CatSpec
 
-Run compile in a backround
+Run compile in a background
 
 	> ~compile
 
-Run tests in a backround
+Run tests in a background
 
 	> ~test
 	> ~test-only com.meow.meow.CatSpec
