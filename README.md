@@ -8,11 +8,24 @@ Install sbt
 
 Install ide of choice ?
 
-## Develop
+	IntelliJIDEA 14 EAP
+		http://confluence.jetbrains.com/display/IDEADEV/IDEA+14+EAP
+		+ install Scala plugin
 
 Run this thing
 
 	$ sbt
+
+Compile
+
+	> compile
+
+Make sure tests are green
+
+	> test
+
+
+## Develop
 
 Compile
 
