@@ -5,9 +5,14 @@
 ### Install sbt
 
 	$ brew install sbt
+
+### Clone the repo
+
+	$ git clone https://github.com/Svetixbot/calculator.git
 	
 ### Run this thing
 
+	$ cd calculator
 	$ sbt
 
 ### Compile
