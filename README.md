@@ -20,9 +20,9 @@
 
 ### Install IDE of choice ?
 
-## [IntelliJIDEA 14 EAP](http://confluence.jetbrains.com/display/IDEADEV/IDEA+14+EAP) + [install Scala plugin](http://confluence.jetbrains.com/display/SCA/Getting+Started+with+IntelliJ+IDEA+Scala+Plugin)
+## *	[IntelliJIDEA 14 EAP](http://confluence.jetbrains.com/display/IDEADEV/IDEA+14+EAP) + [install Scala plugin](http://confluence.jetbrains.com/display/SCA/Getting+Started+with+IntelliJ+IDEA+Scala+Plugin)
 
-## [ScalaIDE === Eclipse](http://scala-ide.org/)
+## *	[ScalaIDE === Eclipse](http://scala-ide.org/)
 
 Open project in your IDE
 
