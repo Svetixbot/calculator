@@ -1,10 +1,14 @@
 # Functional style calculator
 
-## Develop
+## Install and download all the things
 
 Install sbt
 
 	$ brew install sbt
+
+Install ide of choice ?
+
+## Develop
 
 Run this thing
 
