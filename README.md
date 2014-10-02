@@ -1,28 +1,28 @@
 # Functional style calculator
 
-## Install and download all the things
+## Setup, Install and download all the things
 
-Install sbt
+### Install sbt
 
 	$ brew install sbt
-
-Install ide of choice ?
-
-[IntelliJIDEA 14 EAP](http://confluence.jetbrains.com/display/IDEADEV/IDEA+14+EAP) + [install Scala plugin](http://confluence.jetbrains.com/display/SCA/Getting+Started+with+IntelliJ+IDEA+Scala+Plugin)
-
-[ScalaIDE === Eclipse](http://scala-ide.org/)
-
-Run this thing
+	
+### Run this thing
 
 	$ sbt
 
-Compile
+### Compile
 
 	> compile
 
-Make sure tests are green
+### Make sure tests are green
 
-	> test
+	> test	
+
+### Install IDE of choice ?
+
+## [IntelliJIDEA 14 EAP](http://confluence.jetbrains.com/display/IDEADEV/IDEA+14+EAP) + [install Scala plugin](http://confluence.jetbrains.com/display/SCA/Getting+Started+with+IntelliJ+IDEA+Scala+Plugin)
+
+## [ScalaIDE === Eclipse](http://scala-ide.org/)
 
 Open project in your IDE
 
