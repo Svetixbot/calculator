@@ -8,9 +8,8 @@ Install sbt
 
 Install ide of choice ?
 
-	IntelliJIDEA 14 EAP
-		http://confluence.jetbrains.com/display/IDEADEV/IDEA+14+EAP
-		+ install Scala plugin
+	[IntelliJIDEA 14 EAP](http://confluence.jetbrains.com/display/IDEADEV/IDEA+14+EAP)
+		+ [install Scala plugin](http://confluence.jetbrains.com/display/SCA/Getting+Started+with+IntelliJ+IDEA+Scala+Plugin)
 
 Run this thing
 
