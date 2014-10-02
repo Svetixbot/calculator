@@ -10,6 +10,8 @@ Install ide of choice ?
 
 [IntelliJIDEA 14 EAP](http://confluence.jetbrains.com/display/IDEADEV/IDEA+14+EAP) + [install Scala plugin](http://confluence.jetbrains.com/display/SCA/Getting+Started+with+IntelliJ+IDEA+Scala+Plugin)
 
+[ScalaIDE === Eclipse](http://scala-ide.org/)
+
 Run this thing
 
 	$ sbt
@@ -22,6 +24,13 @@ Make sure tests are green
 
 	> test
 
+Open project in your IDE
+
+	IntelliJIDEA should be able to open the project by File/Open (dont forget to install Scala Plugin)
+
+	Eclipse requires special command to run:
+
+		$ sbt eclipse
 
 ## Develop
 
