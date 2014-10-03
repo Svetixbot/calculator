@@ -27,17 +27,15 @@
 
 ## *	[IntelliJIDEA 14 EAP](http://confluence.jetbrains.com/display/IDEADEV/IDEA+14+EAP) + [install Scala plugin](http://confluence.jetbrains.com/display/SCA/Getting+Started+with+IntelliJ+IDEA+Scala+Plugin)
 
+IntelliJIDEA should be able to open the project by File/Open (dont forget to install Scala Plugin)
+
 ## *	[ScalaIDE === Eclipse](http://scala-ide.org/)
 
-Open project in your IDE
+Eclipse requires special command to run:
 
-	IntelliJIDEA should be able to open the project by File/Open (dont forget to install Scala Plugin)
+	$ sbt eclipse
 
-	Eclipse requires special command to run:
-
-		$ sbt eclipse
-
-	After its done go to Eclipse and do File/Import -> Existing Projects into workspace
+After its done go to Eclipse and do File/Import -> Existing Projects into workspace
 
 ## Develop
 
