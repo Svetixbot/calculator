@@ -6,7 +6,7 @@ class CalculatorSpec extends FunSpec {
 
   describe("A Calculator") {
     it("does somthing") {
-      assert(Calculator.run(List("+", "1", "2")) === Ok(3))
+      assert(Calculator.run("1+2") === Ok(3))
     }
   }
 }
