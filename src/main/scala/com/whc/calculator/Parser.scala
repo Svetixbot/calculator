@@ -1,5 +1,4 @@
 package com.whc.calculator
-
 /**
  * A data type that just makes it easier to work with parse states.
  *
@@ -108,13 +107,13 @@ object Parser {
    * scala> Parser.satisfy(c => c == 'h').run("hello")
    * = Ok(ParseState(ello,h))
    */
-  def satisfy(pred: Char => Boolean): Parser[Char] =
+  def satisfy(pred: Char => Boolean, me: Char => Error): Parser[Char] =
     Parser(input => character.run(input) match {
       case ok@Ok(ParseState(i, a)) =>
         if (pred(a))
           ok
         else
-          Fail(UnexpectedInput(i.toString))
+          Fail(me(a))
       case fail@Fail(e) => fail
     })
 
@@ -133,7 +132,7 @@ object Parser {
    * = Fail(UnexpectedInput(h))
    */
   def digit: Parser[Char] =
-    satisfy(_ isDigit)
+    satisfy(c => c.isDigit, c => NotANumber(c.toString))
 
   /**
    * Return a parser that produces zero or a positive integer but fails if
@@ -165,5 +164,5 @@ object Parser {
    * = Fail(UnexpectedInput(h))
    */
   def space: Parser[Char] =
-    satisfy(_.isSpaceChar)
+    satisfy(_.isSpaceChar, c=>UnexpectedInput(c.toString))
 }
