@@ -36,11 +36,12 @@ object Calculator {
       _ <- Parser.list(Parser.space)
       a <- Parser.natural
     } yield new Tuple3(op, n, a)
-  
+
+
   def run(operation: String): Result[Int] = {
-      operationParser.run(operation) match {
-        case Ok(ParseState(_,res)) => attempt(res._1,res._2,res._3)
-        case Fail(error) => Fail(error)
-      }
+    operationParser.run(operation) match {
+      case Ok(ParseState(_, res)) => attempt(res._1, res._2, res._3)
+      case Fail(error) => Fail(error)
+    }
   }
 }
