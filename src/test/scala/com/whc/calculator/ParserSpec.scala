@@ -12,6 +12,11 @@ object ParserSpec extends Properties("Parser") {
     string <- Gen.alphaStr
   } yield numericString + string
 
+  def spaceString: Gen[String] = for {
+    s <- Gen.alphaStr
+    result <- Gen.oneOf(" " + s, s)
+  } yield result
+
   property("Parser#character returns the first char from the input") =
     forAll(inputString) { input =>
       if (input.isEmpty) {
@@ -41,4 +46,14 @@ object ParserSpec extends Properties("Parser") {
        case _ => Parser.natural.run(input) == Fail(NotANumber(input.charAt(0).toString))
      }
    }
+
+  property("Parser#space returns the first space") =
+   forAll(spaceString) { input => 
+     val stringWithSpace = """(^\s+)(.*)""".r
+     input match{
+       case "" =>  Parser.space.run(input) == Fail(NotEnoughInput)
+       case stringWithSpace(s,rest) => Parser.space.run(input) == Ok(ParseState(rest, s.charAt(0)))
+       case _ => Parser.space.run(input) == Fail(UnexpectedInput(input.charAt(0).toString))
+     }
+   } 
 }
