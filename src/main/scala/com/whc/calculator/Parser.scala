@@ -95,6 +95,7 @@ object Parser {
             head <- parser
             tail <- list(parser)
           } yield head :: tail).run(input)
+          // parser.flatMap(head => list(parser).map(tail => head :: tail)).run(input)
     }
 
   /**
