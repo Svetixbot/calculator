@@ -55,5 +55,16 @@ object ParserSpec extends Properties("Parser") {
        case stringWithSpace(s,rest) => Parser.space.run(input) == Ok(ParseState(rest, s.charAt(0)))
        case _ => Parser.space.run(input) == Fail(UnexpectedInput(input.charAt(0).toString))
      }
-   } 
-}
+   }
+
+  property("Parser#map returns a parser with the function `f` applied to the output of that parser") =
+   forAll(inputString) { input => 
+      forAll((f: Int => String) => {
+        val parser = Parser.natural
+        (parser.run(input), parser.map(f).run(input)) match {
+          case (Ok(ParseState(r,p)), Ok(ParseState(rest, parsed))) => r == rest && parsed == f(p)
+          case (fail1@_, fail2@_) => fail1 == fail2
+        }
+      })    
+  }
+}  
