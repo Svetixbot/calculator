@@ -14,7 +14,7 @@ object Calculator {
     case '+' => Ok(Plus)
     case '-' => Ok(Minus)
     case '*' => Ok(Multiply)
-    case _ => Fail(InvalidOperation("Invalid Operation"))
+    case other => Fail(InvalidOperation(other.toString))
   }
 
   def calculate(op: Operation, n: Int, m: Int): Int = op match {
