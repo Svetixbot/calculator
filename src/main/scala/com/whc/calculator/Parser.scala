@@ -108,13 +108,13 @@ object Parser {
    * scala> Parser.satisfy(c => c == 'h').run("hello")
    * = Ok(ParseState(ello,h))
    */
-  def satisfy(pred: Char => Boolean, me: Char => Error): Parser[Char] =
+  def satisfy(pred: Char => Boolean, error: Char => Error): Parser[Char] =
     Parser(input => character.run(input) match {
       case ok@Ok(ParseState(i, a)) =>
         if (pred(a))
           ok
         else
-          Fail(me(a))
+          Fail(error(a))
       case fail@Fail(e) => fail
     })
 
