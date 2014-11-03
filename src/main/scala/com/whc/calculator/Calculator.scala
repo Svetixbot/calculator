@@ -10,33 +10,7 @@ object Calculator {
 
   case object Multiply extends Operation
 
-  def operation(op: Char): Result[Operation] = op match {
-    case '+' => Ok(Plus)
-    case '-' => Ok(Minus)
-    case '*' => Ok(Multiply)
-    case other => Fail(InvalidOperation(other.toString))
-  }
-
-  def calculate(op: Operation, n: Int, m: Int): Int = op match {
-    case Plus => n + m
-    case Minus => n - m
-    case Multiply => n * m
-  }
-
-  def attempt(op: Char, n: Int, m: Int): Result[Int] =
-    for {
-      op1 <- operation(op)
-    } yield calculate(op1, n, m)
-
-  def operationParser: Parser[(Char, Int, Int)] =
-    for {
-      n <- Parser.natural
-      _ <- Parser.list(Parser.space)
-      op <- Parser.operation
-      _ <- Parser.list(Parser.space)
-      a <- Parser.natural
-    } yield new Tuple3(op, n, a)
-
+  def operationParser: Parser[(Char, Int, Int)] = ???
 
   def run(operation: String): Result[Int] = {
     operationParser.run(operation) match {
