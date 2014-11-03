@@ -166,4 +166,20 @@ object Parser {
    */
   def space: Parser[Char] =
     satisfy(_.isSpaceChar, c=>UnexpectedInput(c.toString))
+
+  /**
+   * Return a parser that produces a math operaiton (+, -, *)
+   *  but fails if
+   * - The input is empty, or
+   *
+   * - The produced character is not a valid math operation
+   *
+   * scala> Parser.operation.run("+hello")
+   * = Ok(ParseState(hello,+))
+   *
+   * scala> Parser.operation.run("hello")
+   * = Fail(UnexpectedInput(h))
+   */
+  def operation: Parser[Char] =
+    satisfy(Seq('+', '-', '*').contains(_), c => InvalidOperation(c.toString))  
 }

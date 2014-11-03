@@ -32,7 +32,7 @@ object Calculator {
     for {
       n <- Parser.natural
       _ <- Parser.list(Parser.space)
-      op <- Parser.character
+      op <- Parser.operation
       _ <- Parser.list(Parser.space)
       a <- Parser.natural
     } yield new Tuple3(op, n, a)
