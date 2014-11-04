@@ -1,4 +1,7 @@
 package com.whc.calculator
+
+import com.whc.calculator.Calculator._
+
 /**
  * A data type that just makes it easier to work with parse states.
  *
@@ -25,7 +28,11 @@ case class Parser[A](run: String => Result[ParseState[A]]) {
    * - if that parser fails with an error, return a parser with
    *   that error
    */
-  def flatMap[B](f: A => Parser[B]): Parser[B] = ???
+  def flatMap[B](f: A => Parser[B]): Parser[B] =
+    Parser(input => run(input) match {
+      case Ok(ParseState(i,a)) => f(a).run(i)
+      case Fail(e) => Fail(e)
+    })
 }
 
 object Parser {
@@ -97,13 +104,13 @@ object Parser {
    * scala> Parser.satisfy(c => c == 'h').run("hello")
    * = Ok(ParseState(ello,h))
    */
-  def satisfy(pred: Char => Boolean, me: Char => Error): Parser[Char] =
+  def satisfy(pred: Char => Boolean, error: Char => Error): Parser[Char] =
     Parser(input => character.run(input) match {
       case ok@Ok(ParseState(i, a)) =>
         if (pred(a))
           ok
         else
-          Fail(me(a))
+          Fail(error(a))
       case fail@Fail(e) => fail
     })
 
@@ -152,4 +159,19 @@ object Parser {
    * = Fail(UnexpectedInput(h))
    */
   def space: Parser[Char] = ???
+
+  /**
+   * Return a parser that produces a math operation (+, -, *)
+   *  but fails if
+   * - The input is empty, or
+   *
+   * - The produced character is not a valid math operation
+   *
+   * scala> Parser.operation.run("+hello")
+   * = Ok(ParseState(hello,+))
+   *
+   * scala> Parser.operation.run("hello")
+   * = Fail(UnexpectedInput(h))
+   */
+  def operation: Parser[Operation] = ???
 }

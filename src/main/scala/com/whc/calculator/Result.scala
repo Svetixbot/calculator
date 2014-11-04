@@ -1,3 +1,4 @@
+
 package com.whc.calculator
 
 sealed trait Error
@@ -35,6 +36,7 @@ sealed trait Result[A] {
    *  = 0
    */
   def fold[X](fail: Error => X, ok: A => X): X = ???
+
 
   /*
    * Exercise 2:

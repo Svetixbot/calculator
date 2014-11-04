@@ -25,7 +25,7 @@ class CalculatorSpec extends FunSpec {
     }
 
     ignore("should fail if one of the operands is not a number"){
-      assert(Calculator.run("2+a") === Fail(UnexpectedInput("a")))
+      assert(Calculator.run("2+a") === Fail(NotANumber("a")))
     }
 
     ignore("should calculate if there are spaces"){
@@ -33,12 +33,11 @@ class CalculatorSpec extends FunSpec {
     }
 
     ignore("should fail if there are spaces at the beginning and at the end"){
-      assert(Calculator.run(" 2 + 2 ") === Fail(UnexpectedInput(" 2 + 2 ")))
+      assert(Calculator.run(" 2 + 2 ") === Fail(NotANumber(" ")))
     }
 
     ignore("should fail if the operator is not supported"){
       assert(Calculator.run("2%2") === Fail(InvalidOperation("%")))
     }
-
   }
 }
