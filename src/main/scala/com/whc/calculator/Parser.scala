@@ -1,3 +1,4 @@
+
 package com.whc.calculator
 
 import com.whc.calculator.Calculator._
@@ -17,7 +18,10 @@ case class Parser[A](run: String => Result[ParseState[A]]) {
    * Return a parser with the function `f` applied to the
    * output of that parser.
    */
-  def map[B](f: A => B): Parser[B] = ???
+  def map[B](f: A => B): Parser[B] =
+    Parser(input => run(input).map({
+      case ParseState(i, v) => ParseState(i, f(v))
+    }))
 
   /**
    * Return a parser that feeds its input into this parser, and
@@ -43,7 +47,11 @@ object Parser {
    * scala> Parser.character.run("hello")
    * = Ok(ParseState(ello, h))
    */
-  def character: Parser[Char] = ???
+  def character: Parser[Char] =
+    Parser(input => input.toList match {
+      case c :: cs => Ok(ParseState(cs.mkString, c))
+      case Nil => Fail(NotEnoughInput)
+    })
 
   /**
    * Return a parser that continues producing a list of values from the
@@ -128,7 +136,8 @@ object Parser {
    * scala> Parser.digit.run("hello")
    * = Fail(UnexpectedInput(h))
    */
-  def digit: Parser[Char] = ???
+  def digit: Parser[Char] =
+    satisfy(c => c.isDigit, c => NotANumber(c.toString))
 
   /**
    * Return a parser that produces zero or a positive integer but fails if
@@ -143,7 +152,8 @@ object Parser {
    * scala> Parser.natural.run("hello")
    * = Fail(UnexpectedInput(h))
    */
-  def natural: Parser[Int] = ???
+  def natural: Parser[Int] =
+    list1(digit).map(_.mkString.toInt)
 
   /**
    * Return a parser that produces a space character but fails if
@@ -158,7 +168,8 @@ object Parser {
    * scala> Parser.space.run("hello")
    * = Fail(UnexpectedInput(h))
    */
-  def space: Parser[Char] = ???
+  def space: Parser[Char] =
+    satisfy(_.isSpaceChar, c=>UnexpectedInput(c.toString))
 
   /**
    * Return a parser that produces a math operation (+, -, *)
@@ -173,5 +184,15 @@ object Parser {
    * scala> Parser.operation.run("hello")
    * = Fail(UnexpectedInput(h))
    */
-  def operation: Parser[Operation] = ???
+  def operation: Parser[Operation] = {    
+    Parser(input => character.run(input) match {
+      case Ok(ParseState(rest,c)) => c match {
+        case '+' => Ok(ParseState(rest, Plus))
+        case '-' => Ok(ParseState(rest, Minus))
+        case '*' => Ok(ParseState(rest, Multiply))
+        case _ => Fail(InvalidOperation(c.toString))
+      }
+      case Fail(e) => Fail(e)
+    })
+  }
 }
