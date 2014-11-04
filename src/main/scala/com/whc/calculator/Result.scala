@@ -34,10 +34,7 @@ sealed trait Result[A] {
    * scala> Fail[Int](NotEnoughInput).fold(_ => 0, x => x)
    *  = 0
    */
-  def fold[X](fail: Error => X, ok: A => X): X = this match {
-    case Fail(error) => fail(error)
-    case Ok(a) => ok(a)
-  }
+  def fold[X](fail: Error => X, ok: A => X): X = ???
 
 
   /*
@@ -57,8 +54,7 @@ sealed trait Result[A] {
    *
    * Advanced: Try using flatMap.
    */
-  def map[B](f: A => B): Result[B] =
-    fold(Fail[B], a => Ok(f(a)))
+  def map[B](f: A => B): Result[B] = ???
 
   /*
    * Exercise 3:
@@ -82,6 +78,5 @@ sealed trait Result[A] {
    *
    * Advanced: Try using fold.
    */
-  def flatMap[B](f: A => Result[B]): Result[B] =
-    fold(Fail[B], f)
+  def flatMap[B](f: A => Result[B]): Result[B] = ???
 }

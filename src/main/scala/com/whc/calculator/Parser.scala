@@ -1,4 +1,7 @@
 package com.whc.calculator
+
+import com.whc.calculator.Calculator._
+
 /**
  * A data type that just makes it easier to work with parse states.
  *
@@ -14,10 +17,7 @@ case class Parser[A](run: String => Result[ParseState[A]]) {
    * Return a parser with the function `f` applied to the
    * output of that parser.
    */
-  def map[B](f: A => B): Parser[B] =
-    Parser(input => run(input).map({
-      case ParseState(i, v) => ParseState(i, f(v))
-    }))
+  def map[B](f: A => B): Parser[B] = ???
 
   /**
    * Return a parser that feeds its input into this parser, and
@@ -43,11 +43,7 @@ object Parser {
    * scala> Parser.character.run("hello")
    * = Ok(ParseState(ello, h))
    */
-  def character: Parser[Char] =
-    Parser(input => input.toList match {
-      case c :: cs => Ok(ParseState(cs.mkString, c))
-      case Nil => Fail(NotEnoughInput)
-    })
+  def character: Parser[Char] = ???
 
   /**
    * Return a parser that continues producing a list of values from the
@@ -132,8 +128,7 @@ object Parser {
    * scala> Parser.digit.run("hello")
    * = Fail(UnexpectedInput(h))
    */
-  def digit: Parser[Char] =
-    satisfy(c => c.isDigit, c => NotANumber(c.toString))
+  def digit: Parser[Char] = ???
 
   /**
    * Return a parser that produces zero or a positive integer but fails if
@@ -148,8 +143,7 @@ object Parser {
    * scala> Parser.natural.run("hello")
    * = Fail(UnexpectedInput(h))
    */
-  def natural: Parser[Int] =
-    list1(digit).map(_.mkString.toInt)
+  def natural: Parser[Int] = ???
 
   /**
    * Return a parser that produces a space character but fails if
@@ -164,11 +158,10 @@ object Parser {
    * scala> Parser.space.run("hello")
    * = Fail(UnexpectedInput(h))
    */
-  def space: Parser[Char] =
-    satisfy(_.isSpaceChar, c=>UnexpectedInput(c.toString))
+  def space: Parser[Char] = ???
 
   /**
-   * Return a parser that produces a math operaiton (+, -, *)
+   * Return a parser that produces a math operation (+, -, *)
    *  but fails if
    * - The input is empty, or
    *
@@ -180,6 +173,5 @@ object Parser {
    * scala> Parser.operation.run("hello")
    * = Fail(UnexpectedInput(h))
    */
-  def operation: Parser[Char] =
-    satisfy(Seq('+', '-', '*').contains(_), c => InvalidOperation(c.toString))  
+  def operation: Parser[Operation] = ???
 }
