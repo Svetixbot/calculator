@@ -126,7 +126,7 @@ object Parser {
    * = Ok(ParseState(23hello,1))
    *
    * scala> Parser.digit.run("hello")
-   * = Fail(UnexpectedInput(h))
+   * = Fail(NotANumber(h))
    */
   def digit: Parser[Char] = ???
 
