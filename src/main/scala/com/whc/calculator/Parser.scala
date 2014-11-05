@@ -141,7 +141,7 @@ object Parser {
    * = Ok(ParseState(hello, 123))
    *
    * scala> Parser.natural.run("hello")
-   * = Fail(UnexpectedInput(h))
+   * = Fail(NotANumber(h))
    */
   def natural: Parser[Int] = ???
 
@@ -168,10 +168,10 @@ object Parser {
    * - The produced character is not a valid math operation
    *
    * scala> Parser.operation.run("+hello")
-   * = Ok(ParseState(hello,+))
+   * = Ok(ParseState(hello,Plus))
    *
    * scala> Parser.operation.run("hello")
-   * = Fail(UnexpectedInput(h))
+   * = Fail(InvalidOperation(h))
    */
   def operation: Parser[Operation] = ???
 }
